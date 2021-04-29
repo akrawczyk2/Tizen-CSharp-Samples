@@ -32,7 +32,7 @@ namespace RotaryTimer.Tizen.Wearable.Services
         /// Starts vibrations.
         /// </summary>
         public void Vibrate()
-        {
+        {//test
             if (Vibrator.NumberOfVibrators > 0)
             {
                 Vibrator vibrator = Vibrator.Vibrators[0];
