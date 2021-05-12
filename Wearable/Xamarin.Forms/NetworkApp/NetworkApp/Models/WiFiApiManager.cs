@@ -117,6 +117,12 @@ namespace NetworkApp.Models
             Logger.Log("Connect() " + essid + " " + password);
             // Get a WiFiAP instance with essid from Wi-Fi AP list
             WiFiAP ap = FindAP(essid);
+
+            if (ap == null)
+            {
+                throw new Exception("The WiFiAp cannot be found");
+            }
+
             // Set password
             if (password.Length > 0)
             {
@@ -135,7 +141,14 @@ namespace NetworkApp.Models
         {
             Logger.Log("Disconnect() " + essid);
             // Get a WiFiAP instance with essid from Wi-Fi AP list and disconnect it by calling Tizen C# API
-            return FindAP(essid).DisconnectAsync();
+            WiFiAP ap = FindAP(essid);
+
+            if (ap == null)
+            {
+                throw new Exception("The WiFiAp cannot be found");
+            }
+
+            return ap.DisconnectAsync();
         }
 
         /// <summary>
